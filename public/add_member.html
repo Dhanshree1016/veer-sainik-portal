@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Team Member</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    /* ✅ Navbar */
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      margin-left: 10px;
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.7);
+      transition: 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .logo-container img {
+      height: 70px;
+      margin-left: 15px;
+      border-radius: 8px;
+    }
+
+    /* ✅ Container */
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 15px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    input, textarea {
+      background-color: #f1f1f1;
+      color: #333;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #responseMessage {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* ✅ Responsive */
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar with back and logo -->
+  <div class="navbar">
+    <a href="team.html">Back</a>
+    <div class="logo-container">
+      <img src="team.jpg" alt="Team Logo" />
+    </div>
+  </div>
+
+  <!-- ✅ Main Form Container -->
+  <div class="container">
+    <h1>Add New Team Member</h1>
+    <form id="addMemberForm">
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="text" id="role" placeholder="Role" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="text" id="phone" placeholder="Phone Number" required />
+      <textarea id="certifications" placeholder="Certifications (comma-separated)" required></textarea>
+      <input type="text" id="profileImage" placeholder="Profile Image URL" />
+
+      <!-- Sensor Fields -->
+      <input type="text" id="gps" placeholder="GPS Status" />
+      <input type="text" id="heartRate" placeholder="Heart Rate (e.g., 72 BPM)" />
+      <input type="text" id="temperature" placeholder="Body Temperature (e.g., 36.5°C)" />
+      <input type="text" id="motion" placeholder="Motion Status" />
+      <input type="text" id="objectDetection" placeholder="Object Detection Info" />
+      <input type="text" id="pressure" placeholder="Pressure Sensor Info" />
+
+      <button type="submit">Add Member</button>
+    </form>
+
+    <p id="responseMessage"></p>
+  </div>
+
+  <!-- ✅ Script -->
+  <script>
+    if (localStorage.getItem("userRole") !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("addMemberForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        role: document.getElementById("role").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        certifications: document.getElementById("certifications").value,
+        profileImage: document.getElementById("profileImage").value,
+        gps: document.getElementById("gps").value,
+        heartRate: document.getElementById("heartRate").value,
+        temperature: document.getElementById("temperature").value,
+        motion: document.getElementById("motion").value,
+        objectDetection: document.getElementById("objectDetection").value,
+        pressure: document.getElementById("pressure").value
+      };
+
+      fetch("/add-member", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(response => {
+        document.getElementById("responseMessage").innerText = response;
+        document.getElementById("responseMessage").style.color = "lightgreen";
+        document.getElementById("addMemberForm").reset();
+      })
+      .catch(() => {
+        document.getElementById("responseMessage").innerText = "Failed to add member.";
+        document.getElementById("responseMessage").style.color = "red";
+      });
+    });
+  </script>
+
+</body>
+</html>

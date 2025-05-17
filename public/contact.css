@@ -1,0 +1,129 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #00203F;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    margin: 0 10px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+   
+}
+
+.navbar a.active {
+    background-color: #ffcc00;
+    color: black;
+}
+
+.navbar a:hover {
+    background-color: #ffcc00;
+    color: black;
+}
+
+/* Contact Page */
+.contact-container {
+    padding: 50px;
+    background: linear-gradient(120deg, #ADEFD1, #00203F);
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.contact-header {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.contact-header .highlight {
+    color: #ffcc00;
+}
+
+.intro-text {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.contact-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.form-section, .details-section {
+    background: white;
+    color: #00203F;
+    border-radius: 10px;
+    padding: 20px;
+    width: 45%;
+    margin: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-section h2, .details-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #00203F;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-section input, .form-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-section button {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.form-section button:hover {
+    transform: scale(1.1);
+}
+
+.details-section p {
+    margin: 10px 0;
+}
+
+.social-icons img {
+    width: 30px;
+    margin: 5px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}

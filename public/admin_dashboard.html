@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+
+    .dashboard-background {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('background.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+    }
+
+    .dashboard-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .dashboard-container h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #fff;
+      text-shadow: 2px 2px 8px #007BFF;
+      animation: pulse 2s infinite alternate;
+    }
+
+    .dashboard-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .dashboard-container li {
+      margin: 15px 0;
+    }
+
+    .dashboard-container a.option-button {
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      display: inline-block;
+      font-weight: bold;
+      transition: 0.3s ease-in-out;
+    }
+
+    .dashboard-container a.option-button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 30px;
+      right: 170px;
+      z-index: 10;
+      display: flex;
+     
+    }
+
+    .navbar a {
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px 30px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+    .navbar a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { text-shadow: 0 0 8px #007BFF; }
+      100% { text-shadow: 0 0 20px #66b2ff; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Logo -->
+  <div class="logo">
+    <img src="team.jpg" alt="Logo">
+  </div>
+
+  <!-- ✅ Navbar -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="login.html">Logout</a>
+  </div>
+
+  <!-- ✅ Dashboard -->
+  <div class="dashboard-background">
+    <div class="dashboard-container">
+      <h1>Admin Dashboard</h1>
+      <ul>
+        <li><a class="option-button" href="add_member.html">Add Members</a></li>
+        <li><a class="option-button" href="team.html">View All Team Members</a></li>
+        <li><a class="option-button" href="user_access.html">See User Access</a></li>
+        <li><a class="option-button" href="admin_messages.html">Messages</a></li>
+        <li><a class="option-button" href="index.html">Back to Home</a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

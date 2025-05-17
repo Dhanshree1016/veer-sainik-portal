@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Messages - Admin Panel</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-right a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 5px;
+      background-color: rgba(0, 0, 0, 0.7);
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar-right a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .logo-container {
+      margin-left: 10px;
+    }
+
+    .logo-container img {
+      height: 85px;
+      border-radius: 8px;
+    }
+
+    .container {
+      padding: 60px 40px;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #fff;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .navbar-right {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Navbar -->
+  <div class="navbar">
+    <div class="navbar-right">
+      <a href="admin_dashboard.html">Back</a>
+      <a href="login.html">Logout</a>
+      <div class="logo-container">
+        <img src="team.jpg" alt="Team Logo" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Content -->
+  <div class="container">
+    <h1>User Messages</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="message-table-body"></tbody>
+    </table>
+  </div>
+
+  <!-- ✅ Script to fetch messages -->
+  <script>
+    
+  fetch("/get-messages")
+    .then(res => res.json())
+    .then(messages => {
+      const tbody = document.getElementById("message-table-body");
+      messages.forEach(msg => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${msg.name}</td>
+          <td>${msg.email}</td>
+          <td>${msg.message}</td>
+          <td>${new Date(msg.timestamp).toLocaleString()}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    })
+    .catch(() => {
+      document.getElementById("message-table-body").innerHTML = "<tr><td colspan='4'>Error loading messages.</td></tr>";
+    });
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Veer Sainik Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('background.jpg') no-repeat center center/cover;
+    }
+
+    .login-background {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 40px;
+      border-radius: 15px;
+      width: 400px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      animation: slideUp 0.8s ease;
+    }
+
+    .login-box h2 {
+      margin-bottom: 25px;
+      font-size: 30px;
+      text-shadow: 1px 1px 5px #007bff;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #f1f1f1;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #message {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #ff4d4d;
+    }
+
+    .top-bar {
+      position: absolute;
+       font-size: 20px;
+      top: 15px;
+      right: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s ease-in-out;
+    }
+
+    .top-bar a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .top-bar img {
+      height: 80px;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="top-bar">
+    <a href="index.html">Back</a>
+    <img src="team.jpg" alt="Logo" />
+  </div>
+
+  <!-- ✅ Login Form -->
+  <div class="login-background">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
