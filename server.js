@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -136,9 +139,4 @@ app.get('/get-messages', async (req, res) => {
 // ✅ Health check endpoint (for Render)
 app.get('/healthz', (req, res) => {
   res.status(200).send('OK');
-});
-
-// ▶️ Start Server
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
 });
