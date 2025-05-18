@@ -5,13 +5,6 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
         username: document.getElementById("username").value,
         password: document.getElementById("password").value
     };
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const data = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value
-    };
 
     fetch("/login", {
         method: "POST",
@@ -28,27 +21,6 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
             document.getElementById("password").value = "";
 
             // ✅ Redirect based on role
-            if (response.role === "admin") {
-                window.location.href = "admin_dashboard.html";
-            } else {
-                window.location.href = "team.html";
-            }
-        } else {
-            document.getElementById("message").innerText = "Invalid credentials.";
-        }
-    });
-});
-
-
-    fetch("/login", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    .then(res => res.json())
-    .then(response => {
-        if (response.success) {
-            localStorage.setItem("userRole", response.role);
             if (response.role === "admin") {
                 window.location.href = "admin_dashboard.html";
             } else {
