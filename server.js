@@ -5,29 +5,21 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors'); // ✅ Added CORS
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// ✅ Enable CORS for Netlify frontend
-app.use(cors({
-  origin: "https://your-netlify-site.netlify.app", // 🔁 Replace with your actual Netlify site URL
-  credentials: true
-}));
 
-// ✅ Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
-// ✅ Middleware
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI) // Make sure the env variable is MONGODB_URI
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 

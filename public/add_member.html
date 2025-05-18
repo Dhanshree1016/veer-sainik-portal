@@ -146,53 +146,47 @@
   </div>
 
   <!-- ✅ Script -->
-  <!-- ... (the rest of your HTML remains unchanged) -->
+  <script>
+    if (localStorage.getItem("userRole") !== "admin") {
+      alert("Access denied. Admins only.");
+      window.location.href = "login.html";
+    }
 
-<script>
-  if (localStorage.getItem("userRole") !== "admin") {
-    alert("Access denied. Admins only.");
-    window.location.href = "login.html";
-  }
+    document.getElementById("addMemberForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-  document.getElementById("addMemberForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+      const data = {
+        name: document.getElementById("name").value,
+        role: document.getElementById("role").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        certifications: document.getElementById("certifications").value,
+        profileImage: document.getElementById("profileImage").value,
+        gps: document.getElementById("gps").value,
+        heartRate: document.getElementById("heartRate").value,
+        temperature: document.getElementById("temperature").value,
+        motion: document.getElementById("motion").value,
+        objectDetection: document.getElementById("objectDetection").value,
+        pressure: document.getElementById("pressure").value
+      };
 
-    const data = {
-      name: document.getElementById("name").value,
-      role: document.getElementById("role").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      certifications: document.getElementById("certifications").value,
-      profileImage: document.getElementById("profileImage").value,
-      gps: document.getElementById("gps").value,
-      heartRate: document.getElementById("heartRate").value,
-      temperature: document.getElementById("temperature").value,
-      motion: document.getElementById("motion").value,
-      objectDetection: document.getElementById("objectDetection").value,
-      pressure: document.getElementById("pressure").value
-    };
-
-    // Use full backend URL for fetch call
-    fetch("https://veer-sainik-backend.onrender.com/add-member", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-    .then(res => res.text())
-    .then(response => {
-      document.getElementById("responseMessage").innerText = response;
-      document.getElementById("responseMessage").style.color = "lightgreen";
-      document.getElementById("addMemberForm").reset();
-    })
-    .catch(() => {
-      document.getElementById("responseMessage").innerText = "Failed to add member.";
-      document.getElementById("responseMessage").style.color = "red";
+      fetch("/add-member", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.text())
+      .then(response => {
+        document.getElementById("responseMessage").innerText = response;
+        document.getElementById("responseMessage").style.color = "lightgreen";
+        document.getElementById("addMemberForm").reset();
+      })
+      .catch(() => {
+        document.getElementById("responseMessage").innerText = "Failed to add member.";
+        document.getElementById("responseMessage").style.color = "red";
+      });
     });
-  });
-</script>
-
-<!-- ... (rest of your HTML) -->
-
+  </script>
 
 </body>
 </html>
