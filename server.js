@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose'); // ✅ Moved here at the top
+const mongoose = require('mongoose');
+require('dotenv').config(); // ✅ Load environment variables from .env
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ✅ MongoDB Connection (must come after mongoose is declared)
-mongoose.connect(process.env.MONGO_URI)
+// ✅ MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI) // Make sure the env variable is MONGODB_URI
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
@@ -128,6 +129,11 @@ app.get('/get-messages', async (req, res) => {
   } catch (error) {
     res.status(500).send("Error fetching messages");
   }
+});
+
+// ✅ Health check endpoint (for Render)
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
 });
 
 // ▶️ Start Server
