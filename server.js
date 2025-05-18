@@ -1,8 +1,9 @@
+require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-require('dotenv').config(); // ✅ Load environment variables from .env
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
