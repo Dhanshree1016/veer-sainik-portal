@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us - Veer Sainik Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body, html {
       margin: 0;
@@ -14,10 +14,9 @@
       color: white;
     }
 
-    /* ✅ Navbar */
     .navbar {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
       background-color: rgba(0, 0, 0, 0.6);
@@ -31,83 +30,62 @@
       color: white;
       font-weight: bold;
       padding: 10px 20px;
-      margin-left: 10px;
       border-radius: 5px;
       background-color: rgba(0, 0, 0, 0.7);
-      transition: background-color 0.3s ease;
+      transition: 0.3s ease;
     }
 
-    .navbar a:hover,
-    .navbar a.active {
+    .navbar a:hover {
       background-color: white;
       color: black;
     }
 
-    /* ✅ Main layout */
-    .contact-container {
-      max-width: 1100px;
-      margin: 40px auto;
+    .logo-container img {
+      height: 60px;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
       background-color: rgba(255, 255, 255, 0.08);
-      padding: 40px;
-      border-radius: 15px;
+      padding: 30px;
+      border-radius: 12px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
     }
 
-    .contact-header {
+    h1 {
       text-align: center;
-      font-size: 36px;
-      margin-bottom: 10px;
+      font-size: 32px;
+      margin-bottom: 25px;
+      color: #ffffff;
+      text-shadow: 2px 2px 6px #000;
     }
 
-    .highlight {
-      color: #00b7ff;
-    }
-
-    .intro-text {
-      text-align: center;
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .contact-section {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .form-section, .details-section {
-      flex: 1 1 45%;
-    }
-
-    h2, h3 {
-      color: #00b7ff;
-      margin-bottom: 10px;
-    }
-
-    label {
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 4px;
-      font-weight: bold;
+    input, textarea, button {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
     }
 
     input, textarea {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      margin-bottom: 15px;
+      background-color: #f1f1f1;
+      color: #333;
+    }
+
+    textarea {
+      resize: vertical;
     }
 
     button {
       background-color: #007bff;
       color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
     }
 
@@ -115,29 +93,35 @@
       background-color: #0056b3;
     }
 
-    .social-icons img {
-      height: 32px;
-      margin: 10px 10px 20px 0;
-      transition: transform 0.3s ease;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.1);
-    }
-
-    iframe {
-      margin-top: 20px;
-      border-radius: 10px;
-    }
-
     #responseMessage {
-      margin-top: 10px;
+      margin-top: 15px;
       font-weight: bold;
+      text-align: center;
     }
 
-    @media (max-width: 768px) {
-      .contact-section {
-        flex-direction: column;
+    #responseMessage.success {
+      color: #00ff9d;
+    }
+
+    #responseMessage.error {
+      color: #ff4d4d;
+    }
+
+    /* Social icons (Optional) */
+    .social-icons {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .social-icons a img {
+      height: 40px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 20px;
       }
     }
   </style>
@@ -147,76 +131,73 @@
   <!-- ✅ Navbar -->
   <div class="navbar">
     <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="contact.html" class="active">Contact</a>
-    <a href="login.html">Login</a>
-  </div>
-
-  <!-- ✅ Contact Page Content -->
-  <div class="contact-container">
-    <h1 class="contact-header">Contact <span class="highlight">Us</span></h1>
-    <p class="intro-text">We'd love to hear from you! Feel free to reach out through any of the methods below.</p>
-
-    <div class="contact-section">
-      <!-- Form Section -->
-      <div class="form-section">
-        <h2>Get in Touch</h2>
-        <form id="contactForm">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
-        <p id="responseMessage"></p>
-      </div>
-
-      <!-- Contact Details Section -->
-      <div class="details-section">
-        <h2>Contact Details</h2>
-        <p><strong>Address:</strong> 123 Veer Sainik Street, City Name, Country</p>
-        <p><strong>Phone:</strong> +123-456-7890</p>
-        <p><strong>Email:</strong> info@veersainik.com</p>
-
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-          <a href="#"><img src="twitter-logo.png" alt="Twitter"></a>
-          <a href="#"><img src="instagram-logo.jpg" alt="Instagram"></a>
-        </div>
-
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7503.143227281571!2d74.4852899935791!3d19.90030300000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdc4474a245d261%3A0x806a6b9889186a80!2sSanjivani%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1747479233068!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+    <div class="logo-container">
+      <img src="team.jpg" alt="Team Logo" />
     </div>
   </div>
 
-  <!-- ✅ Optional JS -->
-  <script>
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
+  <!-- ✅ Contact Form -->
+  <div class="container">
+    <h1>Contact Us</h1>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p id="responseMessage"></p>
 
-      fetch("/contact", {
+    <!-- Optional Social Links -->
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook"><img src="facebook-icon.png" alt="Facebook" /></a>
+      <a href="#" aria-label="Twitter"><img src="twitter-icon.png" alt="Twitter" /></a>
+      <a href="#" aria-label="LinkedIn"><img src="linkedin-icon.png" alt="LinkedIn" /></a>
+    </div>
+  </div>
+
+  <!-- ✅ Script -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const responseMsg = document.getElementById("responseMessage");
+    const submitButton = form.querySelector("button");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email.includes("@") || !message) {
+        responseMsg.innerText = "Please enter valid details.";
+        responseMsg.className = "error";
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.innerText = "Sending...";
+
+      fetch("https://veer-sainik-backend.onrender.com/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message })
       })
       .then(res => res.text())
       .then(response => {
-        document.getElementById("responseMessage").innerText = "Message sent successfully!";
-        document.getElementById("contactForm").reset();
+        responseMsg.innerText = response;
+        responseMsg.className = "success";
+        form.reset();
+        submitButton.disabled = false;
+        submitButton.innerText = "Send Message";
       })
       .catch(() => {
-        document.getElementById("responseMessage").innerText = "Error sending message.";
+        responseMsg.innerText = "Failed to send message.";
+        responseMsg.className = "error";
+        submitButton.disabled = false;
+        submitButton.innerText = "Send Message";
       });
     });
   </script>
+
 </body>
 </html>

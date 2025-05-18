@@ -1,20 +1,15 @@
+// routes/contact.js
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const Contact = require('../models/Contact'); // if using separate model file
 
-// Define schema (or move this to models/contact.js if you prefer)
-const ContactSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  message: String,
-  timestamp: { type: Date, default: Date.now }
-});
-
-const Contact = mongoose.model('Contact', ContactSchema);
-
-// POST /contact
 router.post('/', async (req, res) => {
   const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).send("All fields are required.");
+  }
 
   try {
     const newContact = new Contact({ name, email, message });

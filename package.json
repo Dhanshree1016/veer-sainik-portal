@@ -12,6 +12,7 @@
     "content-type": "^1.0.5",
     "cookie": "^0.7.2",
     "cookie-signature": "^1.2.2",
+    "cors": "^2.8.5",
     "debug": "^4.4.1",
     "depd": "^2.0.0",
     "dotenv": "^16.5.0",
@@ -80,5 +81,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dhanshree1016/veer-sainik-portal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dhanshree1016/veer-sainik-portal/issues"
+  },
+  "homepage": "https://github.com/Dhanshree1016/veer-sainik-portal#readme",
   "description": ""
 }
