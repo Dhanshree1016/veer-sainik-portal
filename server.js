@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB Connection (must come after mongoose is declared)
-mongoose.connect('mongodb+srv://dhanshree:Bhushan@veersainik.pdugcvj.mongodb.net/veerSainik?retryWrites=true&w=majority&appName=veerSainik')
+mongoose.connect('mongodb+srv://dhanshree:Dhanu@veersainik.pdugcvj.mongodb.net/veerSainik?retryWrites=true&w=majority&appName=veerSainik')
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
