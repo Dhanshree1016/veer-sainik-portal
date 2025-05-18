@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // ✅ Moved here at the top
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // ✅ MongoDB Connection (must come after mongoose is declared)
-mongoose.connect('mongodb+srv://dhanshree:Dhanu@veersainik.pdugcvj.mongodb.net/veerSainik?retryWrites=true&w=majority&appName=veerSainik')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
